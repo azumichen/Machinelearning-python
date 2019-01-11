@@ -1,0 +1,80 @@
+/*选择sudent schema 中customers表里面的前10行*/
+select * from student.customers limit 10;
+
+/*查看sudent schema 中customers表里面一共有多少行*/
+select count(*) from student.customers;
+
+/*查看sudent schema 中customers表里面有哪些国家*/
+select distinct(country) from student.customers;
+
+select * from student.customers where country='USA'
+
+select * from student.customers where country in ('USA','France')
+
+select * from student.customers where creditLimit >10000
+
+/*查看customerName中包含Inc的行*/
+select * from student.customers where customerName like '%Inc%'
+
+
+
+
+
+
+
+
+/*在支付表（payments）中算出2004年全年的总支付金额*/
+SELECT *
+from student.payments
+LIMIT 10
+
+SELECT sum(amount)
+from student.payments
+WHERE EXTRACT(year FROM paymentDate)=2004
+
+
+/*每个销售代表（salesRep）所对应的顾客数量以及信用额度（creditLimit）*/
+SELECT *
+from student.customers
+LIMIT 10
+
+SELECT *
+from student.employees
+LIMIT 10
+
+SELECT lastName,firstName,count(DISTINCT customerNumber) as cust_cnt,sum(creditLimit) as creditLimit
+from student.employees a
+join student.customers b on a.employeeNumber=b.salesRepEmployeeNumber
+GROUP BY 1,2
+
+/*2004年销量最多的产品是什么*/
+SELECT *
+from student.orderdetails
+LIMIT 10
+
+SELECT *
+from student.orders
+LIMIT 10
+
+SELECT productName,sum(quantityOrdered) as quantity
+from student.orderdetails a
+join student.orders b on a.orderNumber=b.orderNumber
+join student.products c on a.productCode=c.productCode
+WHERE EXTRACT(year FROM orderDate)=2004
+GROUP BY 1
+ORDER BY quantity DESC
+LIMIT 100
+
+
+/*若将历史销量大于等于1000的商品定义为‘高销量’，否则为’低销量’，计算两类商品的数量各有多少*/
+SELECT case when quantity_total>=1000 then 'high'
+else 'low' end as class
+,count(*) as cnt
+from 
+(
+	SELECT productCode,sum(quantityOrdered) as quantity_total
+	from student.orderdetails
+	GROUP BY 1
+) a
+GROUP BY 1
+
