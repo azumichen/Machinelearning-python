@@ -1,8 +1,8 @@
 # Machinelearning-python
 This is python exercise notebook from turioal to case studies on machine learning.
 The course introduces "hello-world" of python including functions on indention, import/from_import, list, tuple, set, dict, data type such as boolean, number, string, Integer; data structure as array and dataframe, loop as while loop, for loop; and how to connect with mysql, postgresql database.
-It introduces packages like Numpy and pandas, such as how to create array, use pandas to regroup data frame.
-Further, it introduces how to use python to plot, or crawl website.
-Mainly, it introduces several case studies in machine learning, such as popular regression including lineral regression, logit regression, bays regression, and decision tree, random forest, K-means, and acessment method by ROC. 
+It explains how to use libraryies like Numpy and pandas to create array, or regroup data frame.
+Further, it gives axamples on how to use python to plot, and crawl website.
+Mainly several case studies in machine learning have been introduced e.g. popular regression as lineral regression, logit regression, bays regression, and machine learning of decision tree, random forest, K-means, and acessment method by ROC. 
 
 
